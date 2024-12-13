@@ -56,16 +56,10 @@ function App() {
       </h1>
       <div className="flex flex-col items-center gap-2">
         {data.map((dessert, index) => (
-          <div key={index} className="rounded-lg p-2  w-full max-w-xs">
+          <div key={index} className="rounded-lg p-2 w-full max-w-xs">
             <picture>
-              <source
-                media="(max-width: 639px)"
-                srcSet={dessert.image.mobile}
-              />
-              <source
-                media="(min-width: 640px) and (max-width: 1023px)"
-                srcSet={dessert.image.tablet}
-              />
+              <source media="(max-width: 639px)" srcSet={dessert.image.mobile} />
+              <source media="(min-width: 640px) and (max-width: 1023px)" srcSet={dessert.image.tablet} />
               <img
                 src={dessert.image.desktop}
                 alt={dessert.name}
@@ -85,20 +79,16 @@ function App() {
             </picture>
 
             <p className="text-yellow-950">{dessert.category}</p>
-            <h2 className="font-bold text-lg text-orange-950">
-              {dessert.name}
-            </h2>
-            <p className="text-orange-600 font-semibold">
-              ${dessert.price.toFixed(2)}
-            </p>
+            <h2 className="font-bold text-lg text-orange-950">{dessert.name}</h2>
+            <p className="text-orange-600 font-semibold">${dessert.price.toFixed(2)}</p>
           </div>
         ))}
       </div>
 
-      <div className="bottom-0 left-0 right-0 bg-white p-4">
-        <h2 className="font-extrabold text-lg font-RedHat text-orange-600">
-          Your Cart ({totalItems})
-        </h2>
+      <div className="bottom-0 left-0 right-0 bg-pink-50 p-4 rounded-2xl">
+        <div className="flex justify-between items-center">
+        </div>
+        <h2 className="font-extrabold text-lg font-RedHat text-orange-600">Your Cart ({totalItems})</h2>
         {totalItems === 0 ? (
           <div className="flex flex-col items-center">
             <img
@@ -111,12 +101,18 @@ function App() {
             </p>
           </div>
         ) : (
+
+          
           <>
-            {cart.map((item, index) => (
+            {cart.map(( item, index) => (
               <div key={index} className="flex justify-between items-center">
-                <span>
-                  {item.name} x {item.quantity}
-                </span>
+                <div className="flex items-center">
+                  <img src={item.image.desktop} alt={item.name} className="w-12 h-12 rounded-lg mr-2" />
+                  <span>
+                    {item.name} x {item.quantity} - ${item.price.toFixed(2)} each
+                    <span className="font-semibold"> = ${(item.price * item.quantity).toFixed(2)}</span>
+                  </span>
+                </div>
                 <div>
                   <button onClick={() => removeFromCart(item)} className="px-2">
                     -
@@ -125,6 +121,9 @@ function App() {
                     +
                   </button>
                 </div>
+              <img src="../public/assets/images/icon-order-confirmed.svg" alt="Logo" className="h-10" /> 
+                <h2 className="font-RedHat text-3xl font-bold text-orange-950 ">Order Confirmed</h2>
+              <p className="mt-2 ">We hope you enjoy your food!</p>
               </div>
             ))}
 
