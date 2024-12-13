@@ -63,11 +63,11 @@ function App() {
               <img
                 src={dessert.image.desktop}
                 alt={dessert.name}
-                className="w-full h-auto rounded-lg"
+                className="w-full h-auto rounded-lg  "
               />
               <button
                 onClick={() => addToCart(dessert)}
-                className="-mt-8 rounded-3xl border border-amber-700 p-3 flex justify-center font-RedHat font-semibold text-orange-950 w-44 hover:bg-zinc-200 transition duration-200"
+                className="-mt-8 relative rounded-3xl border border-amber-700 p-3 flex justify-center font-RedHat font-semibold text-orange-950 w-44 hover:bg-zinc-200 transition duration-200"
               >
                 <img
                   src="/public/assets/images/icon-add-to-cart.svg"
