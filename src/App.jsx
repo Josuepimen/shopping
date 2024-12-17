@@ -84,7 +84,7 @@ function App() {
         ))}
       </div>
 
-      <div className="bottom-0 left-0 right-0 bg-pink-50 p-4 rounded-2xl">
+      <div className="bottom-0 left-0 right-0 bg-white p-4 rounded-2xl">
         <h2 className="font-extrabold text-lg font-RedHat text-orange-600">
           Your Cart ({totalItems})
         </h2>
@@ -102,38 +102,43 @@ function App() {
         ) : (
           <>
             {/* Contenedor con scroll */}
-            <div className="overflow-y-auto max-h-40">
+            <div className="overflow-y-auto max-h-40 space-y-8">
               {cart.map((item, index) => (
                 <div
                   key={index}
                   className="flex justify-between items-center mb-4 border-b border-orange-300 pb-2"
                 >
                   <div className="flex items-center">
-                    <img
+                    {/* <img
                       src={item.image.desktop}
                       alt={item.name}
                       className="w-12 h-12 rounded-lg mr-2"
-                    />
+                    /> */}
                     <p>
-                      {item.name} x {item.quantity} ={" "}
+                      {item.name} 
+                      <br>
+                      </br>
+                      x 
+                      {item.quantity} ={" "}
                       <span className="font-semibold">
                         ${(item.price * item.quantity).toFixed(2)}
                       </span>
                     </p>
+              
                   </div>
                   <div>
                     <button
                       onClick={() => removeFromCart(item)}
-                      className="px-2 font-bold text-red-500"
+                    
                     >
-                      -
+                    <img
+      src="/public/assets/images/icon-remove-item.svg"
+      alt="No items"
+     className="mr-2 rounded-full border-gray-400 border px-1 py-1 m-3"
+    />
+                      
                     </button>
-                    <button
-                      onClick={() => addToCart(item)}
-                      className="px-2 font-bold text-green-500"
-                    >
-                      +
-                    </button>
+                    
                   </div>
                 </div>
               ))}
@@ -158,13 +163,13 @@ function App() {
       {isConfirmationModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="font-bold text-lg">Order Confirmation</h2>
-            <p className="mt-2">Your order has been confirmed!</p>
+            <h2 className="font-bold text-3xl text-orange-950 ">Order Confirmed</h2>
+            <p className="mt-2">We hope you enjoy your food!</p>
             <button
               onClick={() => setIsConfirmationModalOpen(false)}
-              className="mt-4 rounded-3xl border border-blue-700 p-2 text-blue-700 hover:bg-blue-200"
+              className="mt-2 rounded-3xl border border-red-700 p-3 flex justify-center font-RedHat font-semibold text-red-950 w-44 hover:bg-red-200 transition duration-200"
             >
-              Close
+              Start New Order
             </button>
           </div>
         </div>
