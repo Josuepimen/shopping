@@ -51,9 +51,7 @@ function App() {
 
   return (
     <div className="mx-auto p-4 bg-orange-50">
-      <h1 className="font-RedHat text-orange-950 font-black text-3xl">
-        Desserts
-      </h1>
+      <h1 className="font-RedHat text-orange-950 font-black text-3xl">Desserts</h1>
       <div className="flex flex-col items-center gap-2">
         {data.map((dessert, index) => (
           <div key={index} className="rounded-lg p-2 w-full max-w-xs">
@@ -63,27 +61,22 @@ function App() {
               <img
                 src={dessert.image.desktop}
                 alt={dessert.name}
-                className="w-full h-auto rounded-lg  "
+                className="w-full h-auto rounded-lg"
               />
-
-{/* contenedor del boton */}
-
-            <div className="flex justify-center">
-              <button
-                onClick={() => addToCart(dessert)}
-                className="-mt-8 relative rounded-3xl bg-white border border-amber-700 p-3 flex justify-center  font-RedHat font-semibold text-orange-950 w-44 hover:bg-zinc-200 transition duration-200"
-              >
-                <img
-                  src="/public/assets/images/icon-add-to-cart.svg"
-                  alt="Add to Cart"
-                  className="mr-2"
-                />
-                Add to Cart
-              </button>
-            </div>
-              
+              <div className="flex justify-center">
+                <button
+                  onClick={() => addToCart(dessert)}
+                  className="-mt-8 relative rounded-3xl bg-white border border-amber-700 p-3 flex justify-center font-RedHat font-semibold text-orange-950 w-44 hover:bg-zinc-200 transition duration-200"
+                >
+                  <img
+                    src="/assets/images/icon-add-to-cart.svg"
+                    alt="Add to Cart"
+                    className="mr-2"
+                  />
+                  Add to Cart
+                </button>
+              </div>
             </picture>
-
             <p className="text-yellow-950">{dessert.category}</p>
             <h2 className="font-bold text-lg text-orange-950">{dessert.name}</h2>
             <p className="text-orange-600 font-semibold">${dessert.price.toFixed(2)}</p>
@@ -91,16 +84,14 @@ function App() {
         ))}
       </div>
 
-{/* modal vacio */}
-
       <div className="bottom-0 left-0 right-0 bg-pink-50 p-4 rounded-2xl">
-        <div className="flex justify-between items-center">
-        </div>
-        <h2 className="font-extrabold text-lg font-RedHat text-orange-600">Your Cart ({totalItems})</h2>
+        <h2 className="font-extrabold text-lg font-RedHat text-orange-600">
+          Your Cart ({totalItems})
+        </h2>
         {totalItems === 0 ? (
           <div className="flex flex-col items-center">
             <img
-              src="../public/assets/images/illustration-empty-cart.svg"
+              src="/assets/images/illustration-empty-cart.svg"
               alt="No items in cart"
               className="w-32 h-32"
             />
@@ -109,34 +100,41 @@ function App() {
             </p>
           </div>
         ) : (
-
-          // modal content
           <>
-
-
-            {cart.map(( item, index) => (
-              <div key={index} className="flex justify-between items-center">
+            {cart.map((item, index) => (
+              <div
+                key={index}
+                className="flex justify-between items-center mb-4 border-b border-orange-300 pb-2"
+              >
                 <div className="flex items-center">
-                  <img src={item.image.desktop} alt={item.name} className="w-12 h-12 rounded-lg mr-2" />
-                  <span>
-                    {item.name} x {item.quantity} - ${item.price.toFixed(2)} each
-                    <span className="font-semibold"> = ${(item.price * item.quantity).toFixed(2)}</span>
-                  </span>
+                  <img
+                    src={item.image.desktop}
+                    alt={item.name}
+                    className="w-12 h-12 rounded-lg mr-2"
+                  />
+                  <p>
+                    {item.name} x {item.quantity} ={" "}
+                    <span className="font-semibold">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </span>
+                  </p>
                 </div>
                 <div>
-                  <button onClick={() => removeFromCart(item)} className="px-2">
+                  <button
+                    onClick={() => removeFromCart(item)}
+                    className="px-2 font-bold text-red-500"
+                  >
                     -
                   </button>
-                  <button onClick={() => addToCart(item)} className="px-2">
+                  <button
+                    onClick={() => addToCart(item)}
+                    className="px-2 font-bold text-green-500"
+                  >
                     +
                   </button>
                 </div>
-              <img src="../public/assets/images/icon-order-confirmed.svg" alt="Logo" className="h-10" /> 
-                <h2 className="font-RedHat text-3xl font-bold text-orange-950 ">Order Confirmed</h2>
-              <p className="mt-2 ">We hope you enjoy your food!</p>
               </div>
             ))}
-
             <h3 className="font-semibold">Order Total: ${totalPrice}</h3>
             <button
               onClick={handleConfirmOrder}
