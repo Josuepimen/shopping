@@ -65,9 +65,13 @@ function App() {
                 alt={dessert.name}
                 className="w-full h-auto rounded-lg  "
               />
+
+{/* contenedor del boton */}
+
+            <div className="flex justify-center">
               <button
                 onClick={() => addToCart(dessert)}
-                className="-mt-8 relative rounded-3xl border border-amber-700 p-3 flex justify-center font-RedHat font-semibold text-orange-950 w-44 hover:bg-zinc-200 transition duration-200"
+                className="-mt-8 relative rounded-3xl bg-white border border-amber-700 p-3 flex justify-center  font-RedHat font-semibold text-orange-950 w-44 hover:bg-zinc-200 transition duration-200"
               >
                 <img
                   src="/public/assets/images/icon-add-to-cart.svg"
@@ -76,6 +80,8 @@ function App() {
                 />
                 Add to Cart
               </button>
+            </div>
+              
             </picture>
 
             <p className="text-yellow-950">{dessert.category}</p>
@@ -84,6 +90,8 @@ function App() {
           </div>
         ))}
       </div>
+
+{/* modal vacio */}
 
       <div className="bottom-0 left-0 right-0 bg-pink-50 p-4 rounded-2xl">
         <div className="flex justify-between items-center">
@@ -102,8 +110,10 @@ function App() {
           </div>
         ) : (
 
-          
+          // modal content
           <>
+
+
             {cart.map(( item, index) => (
               <div key={index} className="flex justify-between items-center">
                 <div className="flex items-center">
