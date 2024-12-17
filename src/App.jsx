@@ -101,40 +101,43 @@ function App() {
           </div>
         ) : (
           <>
-            {cart.map((item, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center mb-4 border-b border-orange-300 pb-2"
-              >
-                <div className="flex items-center">
-                  <img
-                    src={item.image.desktop}
-                    alt={item.name}
-                    className="w-12 h-12 rounded-lg mr-2"
-                  />
-                  <p>
-                    {item.name} x {item.quantity} ={" "}
-                    <span className="font-semibold">
-                      ${(item.price * item.quantity).toFixed(2)}
-                    </span>
-                  </p>
+            {/* Contenedor con scroll */}
+            <div className="overflow-y-auto max-h-40">
+              {cart.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between items-center mb-4 border-b border-orange-300 pb-2"
+                >
+                  <div className="flex items-center">
+                    <img
+                      src={item.image.desktop}
+                      alt={item.name}
+                      className="w-12 h-12 rounded-lg mr-2"
+                    />
+                    <p>
+                      {item.name} x {item.quantity} ={" "}
+                      <span className="font-semibold">
+                        ${(item.price * item.quantity).toFixed(2)}
+                      </span>
+                    </p>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => removeFromCart(item)}
+                      className="px-2 font-bold text-red-500"
+                    >
+                      -
+                    </button>
+                    <button
+                      onClick={() => addToCart(item)}
+                      className="px-2 font-bold text-green-500"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <button
-                    onClick={() => removeFromCart(item)}
-                    className="px-2 font-bold text-red-500"
-                  >
-                    -
-                  </button>
-                  <button
-                    onClick={() => addToCart(item)}
-                    className="px-2 font-bold text-green-500"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
             <h3 className="font-semibold">Order Total: ${totalPrice}</h3>
             <button
               onClick={handleConfirmOrder}
